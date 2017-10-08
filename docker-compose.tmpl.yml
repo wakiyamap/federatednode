@@ -9,10 +9,10 @@ version: '2'
 
 services:
   bitcoin-base:
-    image: counterparty/bitcoin:${FEDNODE_RELEASE_TAG}
+    image: monaparty/monacoin:${FEDNODE_RELEASE_TAG}
     volumes:
-      - ./config/bitcoin:/root/.bitcoin-config
-      - bitcoin-data:/root/.bitcoin/
+      - ./config/monacoin:/root/.monacoin-config
+      - bitcoin-data:/root/.monacoin/
     logging:
       driver: "json-file"
       options:
@@ -24,21 +24,21 @@ services:
     extends:
       service: bitcoin-base
     ports:
-      - "8332:8332"
+      - "9402:9402"
     environment:
-      - PARAMS=-conf=/root/.bitcoin-config/bitcoin.conf
+      - PARAMS=-conf=/root/.monacoin-config/monacoin.conf
 
   bitcoin-base-testnet:
     hostname: ${HOSTNAME_BASE}-bc-t
     extends:
       service: bitcoin-base
     ports:
-      - "18332:18332"
+      - "19402:19402"
     environment:
-      - PARAMS=-conf=/root/.bitcoin-config/bitcoin.testnet.conf
+      - PARAMS=-conf=/root/.monacoin-config/monacoin.testnet.conf
 
   counterparty-base:
-    image: counterparty/counterparty-server:${FEDNODE_RELEASE_TAG}
+    image: monaparty/counterparty-server:${FEDNODE_RELEASE_TAG}
     volumes:
       - ./src/counterparty-lib:/counterparty-lib
       - ./src/counterparty-cli:/counterparty-cli
@@ -69,7 +69,7 @@ services:
       - PARAMS=--config-file=/root/.config/counterparty/server.testnet.conf
 
   counterblock-base:
-    image: counterparty/counterblock:${FEDNODE_RELEASE_TAG}
+    image: monaparty/counterblock:${FEDNODE_RELEASE_TAG}
     volumes:
       - ./src/counterblock:/counterblock
       - ./config/counterblock:/root/.config/counterblock
@@ -100,38 +100,38 @@ services:
     environment:
       - PARAMS=--config-file=/root/.config/counterblock/server.testnet.conf
 
-  armory-utxsvr-base:
-    image: counterparty/armory-utxsvr:${FEDNODE_RELEASE_TAG}
-    volumes:
-      - ./src/armory-utxsvr:/armory-utxsvr
-      - armory-data:/root/.armory
-      - bitcoin-data:/root/.bitcoin/
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "30m"
-        max-file: "30"
-
-  armory-utxsvr-base-mainnet:
-    hostname: ${HOSTNAME_BASE}-amry
-    extends:
-      service: armory-utxsvr-base
-    environment:
-      - BITCOIND_URL=http://rpc:rpc@bitcoin:8332
-      - RPC_HOST=0.0.0.0
-
-  armory-utxsvr-base-testnet:
-    hostname: ${HOSTNAME_BASE}-amry-t
-    extends:
-      service: armory-utxsvr-base
-    environment:
-      - BITCOIND_URL=http://rpc:rpc@bitcoin-testnet:18332
-      - RPC_HOST=0.0.0.0
-      - PARAMS=--testnet
+#  armory-utxsvr-base:
+#    image: monaparty/armory-utxsvr:${FEDNODE_RELEASE_TAG}
+#    volumes:
+#      - ./src/armory-utxsvr:/armory-utxsvr
+#      - armory-data:/root/.armory
+#      - bitcoin-data:/root/.monacoin/
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: "30m"
+#        max-file: "30"
+#
+#  armory-utxsvr-base-mainnet:
+#    hostname: ${HOSTNAME_BASE}-amry
+#    extends:
+#      service: armory-utxsvr-base
+#    environment:
+#      - MONACOIND_URL=http://rpc:rpc@bitcoin:9402
+#      - RPC_HOST=0.0.0.0
+#
+#  armory-utxsvr-base-testnet:
+#    hostname: ${HOSTNAME_BASE}-amry-t
+#    extends:
+#      service: armory-utxsvr-base
+#    environment:
+#      - MONACOIND_URL=http://rpc:rpc@bitcoin-testnet:19402
+#      - RPC_HOST=0.0.0.0
+#      - PARAMS=--testnet
 
   counterwallet-base:
     hostname: ${HOSTNAME_BASE}-cw
-    image: counterparty/counterwallet:${FEDNODE_RELEASE_TAG}
+    image: monaparty/counterwallet:${FEDNODE_RELEASE_TAG}
     volumes:
       - ./src/counterwallet:/counterwallet
       - ./config/counterwallet/ssl:/ssl_config
