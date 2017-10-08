@@ -35,19 +35,19 @@ services:
       file: docker-compose.tmpl.yml
       service: redis-base
 
-  armory-utxsvr:
-    extends:
-      file: docker-compose.tmpl.yml
-      service: armory-utxsvr-base-mainnet
-    links:
-      - bitcoin
-
-  armory-utxsvr-testnet:
-    extends:
-      file: docker-compose.tmpl.yml
-      service: armory-utxsvr-base-testnet
-    links:
-      - bitcoin-testnet
+#  armory-utxsvr:
+#    extends:
+#      file: docker-compose.tmpl.yml
+#      service: armory-utxsvr-base-mainnet
+#    links:
+#      - bitcoin
+#
+#  armory-utxsvr-testnet:
+#    extends:
+#      file: docker-compose.tmpl.yml
+#      service: armory-utxsvr-base-testnet
+#    links:
+#      - bitcoin-testnet
 
   counterblock:
     extends:
@@ -58,7 +58,7 @@ services:
       - counterparty
       - mongodb
       - redis
-      - armory-utxsvr
+#      - armory-utxsvr
 
   counterblock-testnet:
     extends:
@@ -69,7 +69,7 @@ services:
       - counterparty-testnet
       - mongodb
       - redis
-      - armory-utxsvr-testnet
+#      - armory-utxsvr-testnet
 
   counterwallet:
     extends:
@@ -85,4 +85,4 @@ volumes:
   counterparty-data:
   counterblock-data:
   mongodb-data:
-  armory-data:
+#  armory-data:
