@@ -28,20 +28,20 @@ REPO_BASE_HTTPS = "https://github.com/CounterpartyXCP/{}.git"
 REPO_BASE_SSH = "git@github.com:CounterpartyXCP/{}.git"
 REPOS_BASE = ['counterparty-lib', 'counterparty-cli']
 REPOS_COUNTERBLOCK = REPOS_BASE + ['counterblock', ]
-REPOS_FULL = REPOS_COUNTERBLOCK + ['counterwallet', 'armory-utxsvr']
+REPOS_FULL = REPOS_COUNTERBLOCK + ['counterwallet']
 
 HOST_PORTS_USED = {
-    'base': [8332, 18332, 4000, 14000],
-    'counterblock': [8332, 18332, 4000, 14000, 4100, 14100, 27017],
-    'full': [8332, 18332, 4000, 14000, 4100, 14100, 80, 443, 27017]
+    'base': [9402, 19402, 4000, 14000],
+    'counterblock': [9402, 19402, 4000, 14000, 4100, 14100, 27017],
+    'full': [9402, 19402, 4000, 14000, 4100, 14100, 80, 443, 27017]
 }
 VOLUMES_USED = {
     'base': ['bitcoin-data', 'counterparty-data'],
     'counterblock': ['bitcoin-data', 'counterparty-data', 'counterblock-data', 'mongodb-data'],
-    'full': ['bitcoin-data', 'counterparty-data', 'counterblock-data', 'mongodb-data', 'armory-data']
+    'full': ['bitcoin-data', 'counterparty-data', 'counterblock-data', 'mongodb-data']
 }
 UPDATE_CHOICES = ['counterparty', 'counterparty-testnet', 'counterblock',
-                  'counterblock-testnet', 'counterwallet', 'armory-utxsvr', 'armory-utxsvr-testnet']
+                  'counterblock-testnet', 'counterwallet']
 REPARSE_CHOICES = ['counterparty', 'counterparty-testnet', 'counterblock', 'counterblock-testnet']
 VACUUM_CHOICES = ['counterparty', 'counterparty-testnet']
 SHELL_CHOICES = UPDATE_CHOICES + ['mongodb', 'redis', 'bitcoin', 'bitcoin-testnet']
@@ -346,7 +346,7 @@ def main():
                         os.system(git_cmd)
 
                     # delete installed egg (to force egg recreate and deps re-check on next start)
-                    if service_base in ('counterparty', 'counterblock', 'armory-utxsvr'):
+                    if service_base in ('counterparty', 'counterblock'):
                         for path in glob.glob(os.path.join(service_dir_path, "*.egg-info")):
                             print("Removing egg path {}".format(path))
                             if not IS_WINDOWS:  # have to use root
