@@ -13,7 +13,7 @@ COPY bitcoin.conf /root/.monacoin/monacoin.conf
 COPY start.sh /usr/local/bin/start.sh
 RUN chmod a+x /usr/local/bin/start.sh
 
-EXPOSE 9401 9402 19401 19402
+EXPOSE 9401 9402 19403 19402
 
 # NOTE: Defaults to running on mainnet, specify -e TESTNET=1 to start up on testnet
 ENTRYPOINT ["start.sh"]
