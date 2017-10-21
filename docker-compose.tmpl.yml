@@ -38,12 +38,13 @@ services:
       - PARAMS=-conf=/root/.monacoin-config/monacoin.testnet.conf
 
   counterparty-base:
-    image: monaparty/counterparty-server:${FEDNODE_RELEASE_TAG}
+    build: src/counterparty-lib
+#    image: monaparty/counterparty-server:${FEDNODE_RELEASE_TAG}
     volumes:
       - ./src/counterparty-lib:/counterparty-lib
       - ./src/counterparty-cli:/counterparty-cli
       - ./config/counterparty:/root/.config/counterparty
-      - counterparty-data:/root/.local/share/counterparty
+      - counterparty-data:/root/.local/share/monaparty
     logging:
       driver: "json-file"
       options:
@@ -69,7 +70,8 @@ services:
       - PARAMS=--config-file=/root/.config/counterparty/server.testnet.conf
 
   counterblock-base:
-    image: monaparty/counterblock:${FEDNODE_RELEASE_TAG}
+    build: src/counterblock
+#    image: monaparty/counterblock:${FEDNODE_RELEASE_TAG}
     volumes:
       - ./src/counterblock:/counterblock
       - ./config/counterblock:/root/.config/counterblock
