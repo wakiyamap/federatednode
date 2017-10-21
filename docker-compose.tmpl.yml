@@ -43,7 +43,7 @@ services:
       - ./src/counterparty-lib:/counterparty-lib
       - ./src/counterparty-cli:/counterparty-cli
       - ./config/counterparty:/root/.config/counterparty
-      - counterparty-data:/root/.local/share/counterparty
+      - counterparty-data:/root/.local/share/monaparty
     logging:
       driver: "json-file"
       options:
