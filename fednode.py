@@ -44,7 +44,7 @@ UPDATE_CHOICES = ['counterparty', 'counterparty-testnet', 'counterblock',
                   'counterblock-testnet', 'counterwallet']
 REPARSE_CHOICES = ['counterparty', 'counterparty-testnet', 'counterblock', 'counterblock-testnet']
 VACUUM_CHOICES = ['counterparty', 'counterparty-testnet']
-SHELL_CHOICES = UPDATE_CHOICES + ['mongodb', 'redis', 'bitcoin', 'bitcoin-testnet']
+SHELL_CHOICES = UPDATE_CHOICES + ['mongodb', 'redis', 'monacoin', 'monacoin-testnet']
 
 # set in setup_env()
 IS_WINDOWS = None
