@@ -9,6 +9,7 @@ version: '2'
 
 services:
   bitcoin-base:
+    restart: always
     image: monaparty/monacoin:${FEDNODE_RELEASE_TAG}
     volumes:
       - ./config/monacoin:/root/.monacoin-config
@@ -39,6 +40,7 @@ services:
 
   counterparty-base:
     build: src/counterparty-lib
+    restart: always
 #    image: monaparty/counterparty-server:${FEDNODE_RELEASE_TAG}
     volumes:
       - ./src/counterparty-lib:/counterparty-lib
@@ -70,8 +72,9 @@ services:
       - PARAMS=--config-file=/root/.config/counterparty/server.testnet.conf
 
   counterblock-base:
-    build: src/counterblock
-#    image: monaparty/counterblock:${FEDNODE_RELEASE_TAG}
+    restart: always
+#    build: src/counterblock
+    image: monaparty/counterblock:${FEDNODE_RELEASE_TAG}
     volumes:
       - ./src/counterblock:/counterblock
       - ./config/counterblock:/root/.config/counterblock
@@ -132,8 +135,10 @@ services:
 #      - PARAMS=--testnet
 
   counterwallet-base:
+    restart: always
     hostname: ${HOSTNAME_BASE}-cw
-    image: monaparty/counterwallet:${FEDNODE_RELEASE_TAG}
+#    image: monaparty/counterwallet:${FEDNODE_RELEASE_TAG}
+    build: src/counterwallet
     volumes:
       - ./src/counterwallet:/counterwallet
       - ./config/counterwallet/ssl:/ssl_config
@@ -148,6 +153,7 @@ services:
       - "443:443"
 
   mongodb-base:
+    restart: always
     hostname: ${HOSTNAME_BASE}-mongo
     image: mongo:3.2
     volumes:
@@ -161,6 +167,7 @@ services:
       - ${MONGODB_HOST_INTERFACE}:27017:27017
 
   redis-base:
+    restart: always
     hostname: ${HOSTNAME_BASE}-redis
     image: redis:3.2
     command: redis-server /usr/local/etc/redis/redis.conf
