@@ -24,8 +24,8 @@ SCRIPTDIR = os.path.dirname(os.path.realpath(__file__))
 FEDNODE_CONFIG_FILE = ".fednode.config"
 FEDNODE_CONFIG_PATH = os.path.join(SCRIPTDIR, FEDNODE_CONFIG_FILE)
 
-REPO_BASE_HTTPS = "https://github.com/CounterpartyXCP/{}.git"
-REPO_BASE_SSH = "git@github.com:CounterpartyXCP/{}.git"
+REPO_BASE_HTTPS = "https://github.com/Monaparty/{}.git"
+REPO_BASE_SSH = "git@github.com:Monaparty/{}.git"
 REPOS_BASE = ['counterparty-lib', 'counterparty-cli']
 REPOS_COUNTERBLOCK = REPOS_BASE + ['counterblock', ]
 REPOS_FULL = REPOS_COUNTERBLOCK + ['counterwallet']
@@ -242,7 +242,7 @@ def main():
             repo_url = REPO_BASE_SSH.format(repo) if args.use_ssh_uris else REPO_BASE_HTTPS.format(repo)
             repo_dir = os.path.join(SCRIPTDIR, "src", repo)
             if not os.path.exists(repo_dir):
-                git_cmd = "git clone -b {} {} {}".format(repo_branch, repo_url, repo_dir)
+                git_cmd = "git clone -b {} {} {}".format('monaparty' if repo_branch == 'master' else 'monaparty-develop', repo_url, repo_dir)
                 if not IS_WINDOWS:  # make sure to check out the code as the original user, so the permissions are right
                     os.system("{} -u {} bash -c \"{}\"".format(SUDO_CMD, SESSION_USER, git_cmd))
                 else:
