@@ -1,6 +1,6 @@
 [Default]
 rpc-host=0.0.0.0
-backend-connect=bitcoin
+backend-connect=monacoin
 backend-user=rpc
 backend-password=rpc
 counterparty-connect=counterparty
