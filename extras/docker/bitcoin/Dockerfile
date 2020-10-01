@@ -1,11 +1,11 @@
-FROM counterparty/base
+FROM monaparty/base
 
 MAINTAINER Monaparty Developers <dev@monaparty.me>
 
 # install monacoin-addrindex
 RUN apt-get update && apt-get upgrade -y && \
-  add-apt-repository -y ppa:cryptcoin.junkey/monacoin-addrindex && apt-get update && \
-  apt-get install -y monacoind-addrindex
+  add-apt-repository -y ppa:visvirial/monacoin && apt-get update && \
+  apt-get install -y monacoind
 
 # Set up bitcoind dirs and files
 RUN mkdir -p /root/.monacoin/
