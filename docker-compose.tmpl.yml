@@ -168,7 +168,7 @@ services:
     image: monaparty/counterwallet:${FEDNODE_RELEASE_TAG}
     restart: always
     volumes:
-      - ./src/counterwallet:/counterwallet
+#      - ./src/counterwallet:/counterwallet
       - ./config/counterwallet/ssl:/ssl_config
       - counterblock-data:/counterblock_data
     logging:
