@@ -42,7 +42,7 @@ services:
     image: monaparty/indexd-server:${FEDNODE_RELEASE_TAG}
     restart: always
     volumes:
-      - ./src/indexd-server:/indexd
+#      - ./src/indexd-server:/indexd
       - ./config/indexd:/root/.config/indexd
       - indexd-data:/data/indexd/
     logging:
