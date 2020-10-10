@@ -34,13 +34,13 @@ REPOS_FULL = REPOS_COUNTERBLOCK + ['counterwallet']
 
 HOST_PORTS_USED = {
     'base': [9402, 19402, 29402, 39402, 8432, 18432, 4000, 14000],
-    'counterblock': [9402, 19402, 29402, 39402, 8432, 18432, 4000, 14000, 4100, 14100, 27017],
-    'full': [9402, 19402, 29402, 39402, 8432, 18432, 4000, 14000, 4100, 14100, 80, 443, 27017]
+    'counterblock': [9402, 19402, 29402, 39402, 8432, 18432, 4000, 14000, 4100, 14100, 27017, 4001, 5001],
+    'full': [9402, 19402, 29402, 39402, 8432, 18432, 4000, 14000, 4100, 14100, 80, 443, 27017, 4001, 5001]
 }
 VOLUMES_USED = {
     'base': ['bitcoin-data', 'indexd-data', 'counterparty-data'],
-    'counterblock': ['bitcoin-data', 'indexd-data', 'counterparty-data', 'counterblock-data', 'mongodb-data'],
-    'full': ['bitcoin-data', 'indexd-data', 'counterparty-data', 'counterblock-data', 'mongodb-data']
+    'counterblock': ['bitcoin-data', 'indexd-data', 'counterparty-data', 'counterblock-data', 'mongodb-data', 'ipfs-data'],
+    'full': ['bitcoin-data', 'indexd-data', 'counterparty-data', 'counterblock-data', 'mongodb-data', 'ipfs-data']
 }
 UPDATE_CHOICES = ['indexd', 'indexd-testnet',
                   'counterparty', 'counterparty-testnet', 'counterblock',
@@ -48,7 +48,7 @@ UPDATE_CHOICES = ['indexd', 'indexd-testnet',
 REPARSE_CHOICES = ['counterparty', 'counterparty-testnet', 'counterblock', 'counterblock-testnet']
 ROLLBACK_CHOICES = ['counterparty', 'counterparty-testnet']
 VACUUM_CHOICES = ['counterparty', 'counterparty-testnet']
-SHELL_CHOICES = UPDATE_CHOICES + ['mongodb', 'redis', 'monacoin', 'monacoin-testnet', 'indexd', 'indexd-testnet']
+SHELL_CHOICES = UPDATE_CHOICES + ['mongodb', 'redis', 'monacoin', 'monacoin-testnet', 'indexd', 'indexd-testnet', 'ipfs']
 
 CONFIGCHECK_FILES_BASE = [
     ['monacoin', 'monacoin.conf.default', 'monacoin.conf'],
