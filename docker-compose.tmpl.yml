@@ -184,7 +184,7 @@ services:
 
   mongodb-base:
     hostname: ${HOSTNAME_BASE}-mongo
-    image: mongo:3.2
+    image: mongo:3.4
     restart: on-failure:5
     volumes:
       - mongodb-data:/data/db
