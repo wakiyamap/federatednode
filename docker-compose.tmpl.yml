@@ -198,7 +198,7 @@ services:
 
   redis-base:
     hostname: ${HOSTNAME_BASE}-redis
-    image: redis:3.2
+    image: redis:5.0.9
     restart: on-failure:5
     command: redis-server /usr/local/etc/redis/redis.conf
     volumes:
