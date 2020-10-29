@@ -1,15 +1,23 @@
-FROM ubuntu:16.04
+FROM ubuntu:bionic
 
-MAINTAINER Counterparty Developers <dev@counterparty.io>
+MAINTAINER Monaparty Developers <webmaster@monaparty.me>
 
 # Install common dependencies
-RUN apt-get update && apt-get install -y apt-utils ca-certificates wget curl git mercurial \
-    python3 python3-dev python3-pip python3-setuptools python3-appdirs \
+RUN apt-get update && apt-get install -y gnupg2 && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv f23c5a6cf475977595c89f51ba6932366a755776 && \
+    echo "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu bionic main" > /etc/apt/sources.list.d/python.list && \
+    echo "deb-src http://ppa.launchpad.net/deadsnakes/ppa/ubuntu bionic main" >> /etc/apt/sources.list.d/python.list && \
+    apt-get update && apt-get install -y apt-utils ca-certificates wget curl git mercurial \
+    python3.5 python3.5-dev python3-distutils \
     build-essential vim unzip software-properties-common sudo gettext-base \
-    net-tools iputils-ping telnet lynx locales
+    net-tools iputils-ping telnet lynx locales && \
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3.5 get-pip.py && rm get-pip.py && \
+    mv /usr/local/bin/pip /usr/bin/pip3 && \
+    ln -sf /usr/bin/python3.5 /usr/bin/python3 && ln -sf /usr/bin/python3.5m /usr/bin/python3m
+
 
 # Upgrade pip3 to newest
-RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade pip appdirs
 
 # Set locale
 RUN dpkg-reconfigure -f noninteractive locales && \
