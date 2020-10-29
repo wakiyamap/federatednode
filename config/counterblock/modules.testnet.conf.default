@@ -4,3 +4,6 @@ lib/modules/counterwallet = True
 lib/modules/dex = True
 lib/modules/transaction_stats = True
 lib/modules/betting = True
+lib/modules/burns = True
+lib/modules/dispenses = True
+lib/modules/ipfs = True

@@ -8,4 +8,6 @@ counterparty-user=rpc
 counterparty-password=rpc
 mongodb-connect=mongodb
 redis-connect=redis
+ipfs-api-multiaddr=/dns4/ipfs/tcp/5001
+ipfs-allow-pin=1
 tx-log-file
