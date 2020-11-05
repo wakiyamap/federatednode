@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.5
+#!/usr/bin/env python3.6
 '''
 fednode.py: script to set up and manage a Counterparty federated node
 '''
