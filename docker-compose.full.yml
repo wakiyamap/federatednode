@@ -45,6 +45,11 @@ services:
       file: docker-compose.tmpl.yml
       service: redis-base
 
+  ipfs:
+    extends:
+      file: docker-compose.tmpl.yml
+      service: ipfs-base
+
 #  armory-utxsvr:
 #    extends:
 #      file: docker-compose.tmpl.yml
@@ -96,4 +101,5 @@ volumes:
   counterparty-data:
   counterblock-data:
   mongodb-data:
+  ipfs-data:
 #  armory-data:
