@@ -59,12 +59,12 @@ CONFIGCHECK_FILES_BASE = [
     ['counterparty', 'client.testnet.conf.default', 'client.testnet.conf'],
     ['counterparty', 'server.conf.default', 'server.conf'],
     ['counterparty', 'server.testnet.conf.default', 'server.testnet.conf'],
-];
+]
 CONFIGCHECK_FILES_COUNTERBLOCK = CONFIGCHECK_FILES_BASE + [
     ['counterblock', 'server.conf.default', 'server.conf'],
     ['counterblock', 'server.testnet.conf.default', 'server.testnet.conf'],
 ]
-CONFIGCHECK_FILES_FULL = CONFIGCHECK_FILES_COUNTERBLOCK;
+CONFIGCHECK_FILES_FULL = CONFIGCHECK_FILES_COUNTERBLOCK
 CONFIGCHECK_FILES = {
     'base': CONFIGCHECK_FILES_BASE,
     'counterblock': CONFIGCHECK_FILES_COUNTERBLOCK,
@@ -220,14 +220,14 @@ def config_check(build_config):
         try:
             fromfilepath = os.path.join(SCRIPTDIR, 'config', dirname, fromfile)
             fromdate = file_mtime(fromfilepath)
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             print("Config file not found at {}".format(fromfilepath))
             continue
 
         try:
             tofilepath = os.path.join(SCRIPTDIR, 'config', dirname, tofile)
             todate = file_mtime(tofilepath)
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             print("Config file not found at {}".format(tofilepath))
             continue
     
